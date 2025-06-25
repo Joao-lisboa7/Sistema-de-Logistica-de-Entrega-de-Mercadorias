@@ -1,6 +1,7 @@
 #include<iostream>
 #include<string>
 #include "menu.h"
+#include "veiculos.h"
 using namespace std;
 
 void Menu::mostrarMenuPrincipal(){
@@ -51,6 +52,10 @@ void Menu::menuVeiculos(){
     cout << "0 -  Sair";
     cout << "========================================";
   }while(opcao != 0);  cout << "";
+
+  switch(opcao){
+    case 1: 
+  }
 }
 
 void Menu::menuPedidos(){
