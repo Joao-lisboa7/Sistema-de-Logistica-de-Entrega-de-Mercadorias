@@ -2,71 +2,78 @@
 #include<string>
 #include "menu.h"
 #include "veiculos.h"
+#include "veiculos.cpp"
 using namespace std;
 
 void Menu::mostrarMenuPrincipal(){
   int opcao;
 
   do{
-    cout << "============Menu============";
-    cout << "1 -  Gerenciar locais";
-    cout << "2 -  Gerenciar veiculos";
-    cout << "3 -  Gerenciar pedidos";
+    cout << "============Menu============\n";
+    cout << "1 -  Gerenciar locais\n";
+    cout << "2 -  Gerenciar veiculos\n";
+    cout << "3 -  Gerenciar pedidos\n";
     cout << "0 -  Sair \n";
     cout << "Opcao: ";
     cin >> opcao;
-    cout << "============================";
+    cout << "============================\n";
 
 
     switch(opcao){
       case 1: menuLocais(); break;
       case 2: menuVeiculos(); break;
       case 3: menuPedidos(); break;
-      case 0: cout << "Saindo...\n"; break;
+      case 0: cout << "Saiu\n"; break;
       default: cout << "Opcao invalida\n"; break;
     }
-  }while(opcao != 0);  
+  }while(opcao != 0);
 }
 
 void Menu::menuLocais(){
   int opcao;
   do{
-    cout << "============Menu para locais============";
-    cout << "1 -  Adicionar local";
-    cout << "2 -  Listar locais";
-    cout << "3 -  Atualizar local";
-    cout << "4 -  Excluir local";
-    cout << "0 -  Sair";
-    cout << "========================================";
+    cout << "============Menu para locais============\n";
+    cout << "1 -  Adicionar local\n";
+    cout << "2 -  Listar locais\n";
+    cout << "3 -  Atualizar local\n";
+    cout << "4 -  Excluir local\n";
+    cout << "0 -  Sair\n";
+    cout << "Opcao: ";
+    cin >> opcao;
+    cout << "========================================\n";
   }while(opcao != 0);
 }
 
 void Menu::menuVeiculos(){
-  int opcao;
+  int opcao; 
   do{
-    cout << "============Menu para veiculos============";
-    cout << "1 -  Adicionar veiculo";
-    cout << "2 -  Listar veiculos";
-    cout << "3 -  Atualizar veiculo";
-    cout << "4 -  Excluir veiculo";
-    cout << "0 -  Sair";
-    cout << "========================================";
+    cout << "============Menu para veiculos============\n";
+    cout << "1 -  Adicionar veiculo\n";
+    cout << "2 -  Listar veiculos\n";
+    cout << "3 -  Atualizar veiculo\n";
+    cout << "4 -  Excluir veiculo\n";
+    cout << "0 -  Sair\n";
+    cout << "Opcao: ";
+    cin >> opcao;
+    cout << "========================================\n";
+    switch(opcao){
+      case 1: insereDados_creatVeiculos();
+    }
   }while(opcao != 0);  cout << "";
-
-  switch(opcao){
-    case 1: 
-  }
 }
+
 
 void Menu::menuPedidos(){
    int opcao;
   do{
-    cout << "============Menu para pedidos============";
-    cout << "1 -  Adicionar pedido";
-    cout << "2 -  Listar pedidos";
-    cout << "3 -  Atualizar pedido";
-    cout << "4 -  Excluir pedido";
-    cout << "0 -  Sair";
+    cout << "============Menu para pedidos============\n";
+    cout << "1 -  Adicionar pedido\n";
+    cout << "2 -  Listar pedidos\n";
+    cout << "3 -  Atualizar pedido\n";
+    cout << "4 -  Excluir pedido\n";
+    cout << "0 -  Sair\n";
+    cout << "Opcao: ";
+    cin >> opcao;
     cout << "========================================";
 
   }while(opcao != 0);

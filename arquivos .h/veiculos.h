@@ -7,16 +7,16 @@ class Veiculos{
   private:
     string placa;
     string modelo;
-    string status;
+    bool status; // true = disponível, false = alugado/indisponível
   //Local* localAtural;
 
   public:
-    Veiculos(string placa, string modelo, string status/*, Local* localAtual  */);
+    Veiculos(string placa, string modelo /*, Local* localAtual  */);
 
   //métodos get
     string getPlaca();
     string getModelo();
-    string getStatus();
+    bool getStatus();
 };
 
 #endif //VEICULOS_H
