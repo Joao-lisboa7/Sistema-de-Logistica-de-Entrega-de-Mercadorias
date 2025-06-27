@@ -23,6 +23,8 @@ class Veiculos{
   string getPlaca() const;
   string getModelo() const;
   bool getStatus() const;
+
+  void setModelo(const std::string& novoModelo);
 };
 
 void salvarVeiculoEmArquivo(const Veiculos& veiculo);

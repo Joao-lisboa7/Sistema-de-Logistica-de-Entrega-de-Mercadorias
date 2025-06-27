@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "veiculos.h"
+#include "gerenciadorVeiculos.h"
 #include <cstring>
 #include <limits>
 #include <fstream>
@@ -22,7 +23,7 @@ Veiculos::Veiculos(const std::string& placa_inicial, const std::string& modelo_i
 
     this->status = true;
     
-    std::cout << "LOG: Veiculo criado -> Placa: " << this->placa << ", Modelo: " << this->modelo << std::endl;
+    std::cout << "----Veiculo criado----\nPlaca: " << this->placa << ", Modelo: " << this->modelo << std::endl;
 }
 
 void salvarVeiculoEmArquivo(const Veiculos& veiculo) {
@@ -36,7 +37,7 @@ void salvarVeiculoEmArquivo(const Veiculos& veiculo) {
     arquivo.write(reinterpret_cast<const char*>(&veiculo), sizeof(Veiculos));
     
     arquivo.close();
-    std::cout << "LOG: Veiculo salvo no arquivo veiculos.dat\n";
+    std::cout << "Veiculo salvo no arquivo veiculos.dat\n";
 }
 
 /*==========Read==============*/
@@ -50,4 +51,10 @@ string Veiculos::getModelo() const{
 
 bool Veiculos::getStatus() const{
   return this -> status;
+}
+
+/*========update========*/
+void Veiculos::setModelo(const std::string& novoModelo) {
+    strncpy(this->modelo, novoModelo.c_str(), TAM_MODELO);
+    this->modelo[TAM_MODELO - 1] = '\0';
 }

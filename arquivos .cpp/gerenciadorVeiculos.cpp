@@ -23,8 +23,6 @@ void GerenciadorVeiculos::adicionarNovoVeiculo() {
     std::cout << "\nVeiculo adicionado com sucesso!\n";
 }
 
-// --- Implementações dos Métodos Auxiliares ---
-
 Veiculos GerenciadorVeiculos::pedirDadosParaNovoVeiculo() {
     string placa_lida, modelo_lido;
 
@@ -64,7 +62,7 @@ void GerenciadorVeiculos::carregarVeiculosDoArquivo() {
     std::ifstream arquivo(this->nomeDoArquivo, std::ios::binary);
 
     if (!arquivo) {
-        std::cout << "LOG: Arquivo de dados nao encontrado. Um novo sera criado ao salvar o primeiro veiculo.\n";
+        std::cout << "Arquivo de dados nao encontrado. Um novo sera criado ao salvar o primeiro veiculo.\n";
         return;
     }
     
@@ -89,6 +87,39 @@ void GerenciadorVeiculos::listarVeiculos() const {
     std::cout << "---------------------------\n";
 } 
 
+/*========update=========*/
+void GerenciadorVeiculos::atualizarVeiculo() {
+    std::string placa_busca;
+    std::cout << "--- Atualizar Veiculo ---\n";
+    std::cout << "Digite a placa do veiculo que deseja atualizar: ";
+    std::cin >> placa_busca;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    for (Veiculos& veiculo : this->listaDeVeiculos){
+
+        if (veiculo.getPlaca() == placa_busca) {
+            // --- Veículo encontrado! ---
+            std::cout << "Veiculo encontrado. Modelo atual: " << veiculo.getModelo() << std::endl;
+            
+            // Pede o novo modelo
+            std::string novo_modelo;
+            std::cout << "Digite o novo modelo: ";
+            std::getline(std::cin, novo_modelo);
+            cout << "\n";
+
+            veiculo.setModelo(novo_modelo);
+
+            // Reescreve o arquivo .dat com a lista atualizada
+            salvarListaCompletaNoArquivo();
+            
+            std::cout << "Veiculo atualizado com sucesso.\n";
+            return;
+        }
+    }
+
+    std::cout << "Veiculo com a placa '" << placa_busca << "' nao encontrado.\n";
+}
+/*=========delete===========*/
 void GerenciadorVeiculos::excluirVeiculo() {
     std::string placa_busca;
     std::cout << "--- Excluir Veiculo ---\n";
@@ -106,6 +137,7 @@ void GerenciadorVeiculos::excluirVeiculo() {
             char confirmacao;
             std::cout << "Tem certeza que deseja excluir este veiculo? (S/N): ";
             std::cin >> confirmacao;
+            cout << "\n";
 
             if (confirmacao == 'S' || confirmacao == 's') {
                 // Remove o veículo do vetor usando o iterador
@@ -118,17 +150,15 @@ void GerenciadorVeiculos::excluirVeiculo() {
             } else {
                 std::cout << "Operacao cancelada.\n";
             }
-            return; // Sai da função pois já encontrou e tratou o veículo
+            return;
         }
-        ++it; // Avança para o próximo item da lista
+        ++it;
     }
 
-    // Se o loop terminar, significa que o veículo não foi encontrado
     std::cout << "Veiculo com a placa '" << placa_busca << "' nao encontrado.\n";
 }
 
 
-// --- Implementação do novo método de salvar ---
 void GerenciadorVeiculos::salvarListaCompletaNoArquivo() const {
     // Abre o arquivo em modo de escrita binária (sem 'app'), o que SOBRESCREVE o conteúdo.
     std::ofstream arquivo(this->nomeDoArquivo, std::ios::binary);

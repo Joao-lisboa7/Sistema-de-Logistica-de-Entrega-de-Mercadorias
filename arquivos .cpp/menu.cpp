@@ -69,10 +69,15 @@ void Menu::menuVeiculos(){
         break;
       }
       case 3:{
+        this->gerenciadorVeiculos.atualizarVeiculo();
+        break;
       }
       case 4:{
         this ->gerenciadorVeiculos.excluirVeiculo();
         break;
+      }
+      default:{
+        cout << "Opcao invalida \n"; break;
       }
 
     }

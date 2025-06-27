@@ -14,6 +14,7 @@ public: // --- Métodos que o Menu pode acessar ---
     void adicionarNovoVeiculo();
     void listarVeiculos() const;
     void excluirVeiculo();
+    void atualizarVeiculo();
 
 private: // --- Detalhes internos que o Menu não precisa conhecer ---
     // A lista de veículos fica aqui, sob a responsabilidade do gerenciador.
