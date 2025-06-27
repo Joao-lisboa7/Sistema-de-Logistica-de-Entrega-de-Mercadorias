@@ -1,25 +1,30 @@
 #ifndef VEICULOS_H
 #define VEICULOS_H
+#include <string>
 
 using namespace std;
 
+
 class Veiculos{
   private:
-    static const int TAM_PLACA = 8;  // 7 caracteres + 1 para o '\0'
-    static const int TAM_MODELO = 16;
-
-    char placa[TAM_PLACA];
-    char modelo[TAM_MODELO];
-    bool status; // true = disponível, false = alugado/indisponível
+  static const int TAM_PLACA = 8; 
+  static const int TAM_MODELO = 16;
+  
+  char placa[TAM_PLACA];
+  char modelo[TAM_MODELO];
+  bool status; 
   //Local* localAtural;
-
+  
   public:
-    Veiculos(const std::string& placa_inicial, const std::string& modelo_inicial);
-
+  Veiculos();
+  Veiculos(const std::string& placa_inicial, const std::string& modelo_inicial);
+  
   //métodos get
-    string getPlaca();
-    string getModelo();
-    bool getStatus();
+  string getPlaca() const;
+  string getModelo() const;
+  bool getStatus() const;
 };
+
+void salvarVeiculoEmArquivo(const Veiculos& veiculo);
 
 #endif //VEICULOS_H

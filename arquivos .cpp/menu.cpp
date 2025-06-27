@@ -1,8 +1,8 @@
+#include "menu.h"
 #include<iostream>
 #include<string>
-#include "menu.h"
-#include "veiculos.h"
-#include "veiculos.cpp"
+#include<vector>
+#include<limits>
 using namespace std;
 
 void Menu::mostrarMenuPrincipal(){
@@ -55,9 +55,26 @@ void Menu::menuVeiculos(){
     cout << "0 -  Sair\n";
     cout << "Opcao: ";
     cin >> opcao;
+
+     cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
     cout << "========================================\n";
     switch(opcao){
-      case 1: insereDados_creatVeiculos();
+      case 1: {
+        this->gerenciadorVeiculos.adicionarNovoVeiculo();
+        break;
+      }
+      case 2:{
+        this -> gerenciadorVeiculos.listarVeiculos();
+        break;
+      }
+      case 3:{
+      }
+      case 4:{
+        this ->gerenciadorVeiculos.excluirVeiculo();
+        break;
+      }
+
     }
   }while(opcao != 0);  cout << "";
 }

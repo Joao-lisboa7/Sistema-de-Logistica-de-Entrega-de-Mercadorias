@@ -1,23 +1,16 @@
-#include<iostream>
-#include<string>
+#include <iostream>
+#include <string>
 #include "veiculos.h"
-#include<cstring>
+#include <cstring>
 #include <limits>
+#include <fstream>
+#include <vector>
 
 /*===========Creat=============*/
-Veiculos insereDados_creatVeiculos(){
-  string placa_lida, modelo_lido;
-
-  cout << "Digite a placa: ";
-  cin >> placa_lida;
-
-  cout << "Digite o modelo: ";
-  cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-  getline(std::cin, modelo_lido);
-
-  Veiculos novoVeiculo(placa_lida, modelo_lido);
-
-  return novoVeiculo;
+Veiculos::Veiculos() {
+    placa[0] = '\0';  
+    modelo[0] = '\0'; 
+    status = false;
 }
 
 Veiculos::Veiculos(const std::string& placa_inicial, const std::string& modelo_inicial) {
@@ -32,16 +25,29 @@ Veiculos::Veiculos(const std::string& placa_inicial, const std::string& modelo_i
     std::cout << "LOG: Veiculo criado -> Placa: " << this->placa << ", Modelo: " << this->modelo << std::endl;
 }
 
+void salvarVeiculoEmArquivo(const Veiculos& veiculo) {
+    std::ofstream arquivo("veiculos.dat", std::ios::binary | std::ios::app);
+
+    if (!arquivo) {
+        std::cerr << "ERRO: Nao foi possivel abrir o arquivo para escrita." << std::endl;
+        return;
+    }
+
+    arquivo.write(reinterpret_cast<const char*>(&veiculo), sizeof(Veiculos));
+    
+    arquivo.close();
+    std::cout << "LOG: Veiculo salvo no arquivo veiculos.dat\n";
+}
 
 /*==========Read==============*/
-string Veiculos::getPlaca(){
+string Veiculos::getPlaca() const{
   return this -> placa;
 }
 
-string Veiculos::getModelo(){
+string Veiculos::getModelo() const{
   return this -> modelo;
 }
 
-bool Veiculos::getStatus(){
+bool Veiculos::getStatus() const{
   return this -> status;
 }
