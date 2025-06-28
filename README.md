@@ -20,3 +20,4 @@ Trabalho de Algoritmos e Estrutura de Dados
 
 > Certifique-se de estar no diretório correto antes de executar os comandos.
 
+
