@@ -4,7 +4,13 @@
 #include "veiculos.h"
 #include "GerenciadorVeiculos.h"
 
+#include "gerenciadorLocais.h"
+
 class Menu{
+
+  private:
+    GerenciadorLocais gerenciadorLocais;
+    
   public:
     void mostrarMenuPrincipal();
     void menuLocais();
