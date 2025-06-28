@@ -10,7 +10,7 @@ Trabalho de Algoritmos e Estrutura de Dados
 
 2. **Compile o projeto:**
    ```
-   g++ "arquivos .cpp/main.cpp" "arquivos .cpp/menu.cpp" "arquivos .cpp/veiculos.cpp" "arquivos .cpp/GerenciadorVeiculos.cpp" -I"arquivos .h" -o executavel
+   g++ "arquivos .cpp/main.cpp" "arquivos .cpp/menu.cpp" "arquivos .cpp/veiculos.cpp" "arquivos .cpp/GerenciadorVeiculos.cpp" "arquivos .cpp/gerenciadorLocais.cpp" -I"arquivos .h" -o executavel
    ```
 
 3. **Execute o programa:**
