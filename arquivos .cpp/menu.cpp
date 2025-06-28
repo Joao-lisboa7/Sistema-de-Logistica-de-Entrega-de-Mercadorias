@@ -52,19 +52,15 @@ void Menu::menuLocais() {
 
         switch (opcao) {
             case 1:
-                // Chama a função para criar um local do nosso gerenciador
                 gerenciadorLocais.criarLocal();
                 break;
             case 2:
-                // Chama a função para listar os locais
                 gerenciadorLocais.listarLocais();
                 break;
             case 3:
-                // Chama a função para atualizar um local
                 gerenciadorLocais.atualizarLocal();
                 break;
             case 4:
-                // Chama a função para excluir um local
                 gerenciadorLocais.excluirLocal();
                 break;
             case 0:

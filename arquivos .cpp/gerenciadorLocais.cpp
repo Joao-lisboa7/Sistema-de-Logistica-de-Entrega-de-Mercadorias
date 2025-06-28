@@ -52,8 +52,7 @@ void GerenciadorLocais::atualizarLocal() {
 
     std::string nomeBusca;
     std::cout << "Digite o nome do local que deseja atualizar: ";
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    std::getline(std::cin, nomeBusca);
+    std::cin >> nomeBusca; // Mudança: usando cin >> em vez de getline
 
     auto it = encontrarLocalPorNome(nomeBusca);
 
@@ -64,7 +63,7 @@ void GerenciadorLocais::atualizarLocal() {
 
         // Pede os novos dados ao usuário
         std::cout << "Digite o novo nome: ";
-        std::getline(std::cin, novoNome);
+        std::cin >> novoNome; // Mudança: usando cin >> em vez de getline
         std::cout << "Digite a nova coordenada X: ";
         std::cin >> novaCoordX;
         std::cout << "Digite a nova coordenada Y: ";
@@ -129,6 +128,7 @@ void GerenciadorLocais::carregarLocaisDoArquivo() {
         locais.push_back(localLido);
     }
     arquivo.close();
+    std::cout << "LOG: " << locais.size() << " locais carregados do arquivo binario.\n";
 }
 
 void GerenciadorLocais::salvarListaCompletaNoArquivo() const {
@@ -142,12 +142,12 @@ void GerenciadorLocais::salvarListaCompletaNoArquivo() const {
         arquivo.write(reinterpret_cast<const char*>(&local), sizeof(Local));
     }
     arquivo.close();
+    std::cout << "LOG: " << locais.size() << " locais salvos em formato binario no arquivo " << nomeDoArquivo << std::endl;
 }
 
 bool GerenciadorLocais::pedirDadosParaLocal(std::string& nome, int& x, int& y) {
     std::cout << "Digite o nome do local: ";
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    std::getline(std::cin, nome);
+    std::cin >> nome; // Mudança: usando cin >> em vez de getline
     
     // Validação para garantir que o nome seja único
     if (encontrarLocalPorNome(nome) != locais.end()) {
