@@ -28,7 +28,42 @@ void Menu::mostrarMenuPrincipal() {
     }
   }while(opcao != 0);
 }
+void Menu::menuPedidos() {
+    int opcao;
+    do {
+        cout << "\n===========Menu para Pedidos==========\n";
+        cout << "1 - Adicionar pedido\n";
+        cout << "2 - Listar pedidos\n";
+        cout << "3 - Atualizar pedido\n";
+        cout << "4 - Excluir pedido\n";
+        cout << "0 - Voltar ao menu principal\n";
+        cout << "Opcao: ";
+        cin >> opcao;
+        cout << "========================================\n";
 
+        switch (opcao) {
+            case 1:
+                gerenciadorPedidos.criarPedido();
+                break;
+            case 2:
+                gerenciadorPedidos.listarPedidos();
+                break;
+            case 3:
+                gerenciadorPedidos.atualizarPedido();
+                break;
+            case 4:
+                gerenciadorPedidos.excluirPedido();
+                break;
+            case 0:
+                cout << "Voltando ao menu principal...\n";
+                break;
+            default:
+                cout << "Opcao invalida. Tente novamente.\n";
+                break;
+        }
+
+    } while (opcao != 0);
+}
 void Menu::menuLocais() {
     int opcao;
     do {

@@ -2,9 +2,9 @@
 #define MENU_H
 #include <vector>
 #include "veiculos.h"
-#include "GerenciadorVeiculos.h"
-
+#include "gerenciadorVeiculos.h"
 #include "gerenciadorLocais.h"
+#include "gerenciadorPedidos.h"
 
 class Menu{
 
@@ -18,7 +18,9 @@ class Menu{
     void menuPedidos();
 
   private:
-  GerenciadorVeiculos gerenciadorVeiculos;
+    GerenciadorLocais gerenciadorLocais;
+    GerenciadorVeiculos gerenciadorVeiculos;
+    GerenciadorPedidos gerenciadorPedidos;
 };
 
 
