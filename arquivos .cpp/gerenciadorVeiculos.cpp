@@ -3,11 +3,44 @@
 #include <iostream>
 #include <fstream>
 #include <limits>
+#include <cmath> // --- BIBLIOTECA ADICIONADA ---
+
+// --- FUNÇÃO AUXILIAR PARA CÁLCULO DE DISTÂNCIA ---
+double calcularDistanciaEuclidiana(int x1, int y1, int x2, int y2) {
+    return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
+}
+
 
 // --- Implementação do Construtor ---
 GerenciadorVeiculos::GerenciadorVeiculos() {
     carregarVeiculosDoArquivo();
 }
+
+// --- IMPLEMENTAÇÃO DO NOVO MÉTODO ---
+Veiculos* GerenciadorVeiculos::encontrarVeiculoMaisProximo(int x, int y) {
+    Veiculos* veiculoMaisProximo = nullptr;
+    double menorDistancia = std::numeric_limits<double>::max();
+
+    for (Veiculos& veiculo : this->listaDeVeiculos) {
+        // Considera apenas veículos que não estão ocupados
+        if (!veiculo.getStatus()) {
+            double distancia = calcularDistanciaEuclidiana(
+                veiculo.getCoordenadaX(), 
+                veiculo.getCoordenadaY(),
+                x, 
+                y
+            );
+
+            if (distancia < menorDistancia) {
+                menorDistancia = distancia;
+                veiculoMaisProximo = &veiculo;
+            }
+        }
+    }
+
+    return veiculoMaisProximo;
+}
+
 
 // --- Implementação do Método Principal do "Create" ---
 void GerenciadorVeiculos::adicionarNovoVeiculo() {

@@ -8,11 +8,12 @@
 class GerenciadorVeiculos {
 
 public:
-    GerenciadorVeiculos(); // Construtor voltou ao original
+    GerenciadorVeiculos();
     void adicionarNovoVeiculo();
     void listarVeiculos() const;
     void excluirVeiculo();
     void atualizarVeiculo();
+    Veiculos* encontrarVeiculoMaisProximo(int x, int y);
 
 private: 
     std::vector<Veiculos> listaDeVeiculos;

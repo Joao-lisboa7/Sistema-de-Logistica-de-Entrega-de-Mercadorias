@@ -5,6 +5,13 @@
 #include<limits>
 using namespace std;
 
+// --- IMPLEMENTAÇÃO DO CONSTRUTOR ---
+// Inicializa o gerenciadorPedidos passando a referência do gerenciadorVeiculos
+Menu::Menu() : gerenciadorPedidos(gerenciadorVeiculos) {
+    // O corpo pode ficar vazio
+}
+
+
 void Menu::mostrarMenuPrincipal() {
     int opcao;
 
@@ -37,6 +44,7 @@ void Menu::menuPedidos() {
         cout << "2 - Listar pedidos\n";
         cout << "3 - Atualizar pedido\n";
         cout << "4 - Excluir pedido\n";
+        cout << "5 - Calcular Rota de Entrega\n"; // --- NOVA OPÇÃO ---
         cout << "0 - Voltar ao menu principal\n";
         cout << "Opcao: ";
         cin >> opcao;
@@ -54,6 +62,9 @@ void Menu::menuPedidos() {
                 break;
             case 4:
                 gerenciadorPedidos.excluirPedido();
+                break;
+            case 5: // --- NOVO CASE ---
+                gerenciadorPedidos.calcularRotaDeEntrega();
                 break;
             case 0:
                 cout << "Voltando ao menu principal...\n";
@@ -132,6 +143,7 @@ void Menu::menuVeiculos(){
         this ->gerenciadorVeiculos.excluirVeiculo();
         break;
       }
+      case 0: break;
       default:{
         cout << "Opcao invalida. Tente novamente.\n"; break;
       }
@@ -139,5 +151,3 @@ void Menu::menuVeiculos(){
     }
   }while(opcao != 0);  cout << "";
 }
-
-// A segunda definição de menuPedidos() foi removida daqui.

@@ -9,6 +9,7 @@
 class Menu{
     
   public:
+    Menu(); // --- CONSTRUTOR ADICIONADO ---
     void mostrarMenuPrincipal();
     void menuLocais();
     void menuVeiculos();
