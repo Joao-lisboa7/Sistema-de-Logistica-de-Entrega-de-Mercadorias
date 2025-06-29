@@ -28,6 +28,7 @@ void Menu::mostrarMenuPrincipal() {
     }
   }while(opcao != 0);
 }
+
 void Menu::menuPedidos() {
     int opcao;
     do {
@@ -101,7 +102,7 @@ void Menu::menuLocais() {
 }
 
 void Menu::menuVeiculos(){
-  int opcao; 
+  int opcao;
   do{
     cout << "===========Menu para veiculos===========\n";
     cout << "1 -  Adicionar veiculo\n";
@@ -139,20 +140,4 @@ void Menu::menuVeiculos(){
   }while(opcao != 0);  cout << "";
 }
 
-
-void Menu::menuPedidos() {
-    int opcao;
-    do {
-        cout << "\n===========Menu para Pedidos==========\n";
-        cout << "1 - Adicionar pedido\n";
-        cout << "2 - Listar pedidos\n";
-        cout << "3 - Atualizar pedido\n";
-        cout << "4 - Excluir pedido\n";
-        cout << "0 - Voltar ao menu principal\n";
-        cout << "Opcao: ";
-        cin >> opcao;
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        cout << "========================================\n";
-
-    } while (opcao != 0);
-}
+// A segunda definição de menuPedidos() foi removida daqui.

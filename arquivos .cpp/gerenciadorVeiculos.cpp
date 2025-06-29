@@ -18,13 +18,16 @@ void GerenciadorVeiculos::adicionarNovoVeiculo() {
     this->listaDeVeiculos.push_back(veiculoNovo);
 
     // 3. Usa seu outro método privado para salvar o novo veículo no arquivo.
-    salvarVeiculoNoArquivo(veiculoNovo);
+    salvarListaCompletaNoArquivo(); // Salva a lista inteira para garantir consistência
 
     std::cout << "\nVeiculo adicionado com sucesso!\n";
 }
 
 Veiculos GerenciadorVeiculos::pedirDadosParaNovoVeiculo() {
     string placa_lida, modelo_lido;
+    char status_char;
+    bool status_final;
+    int coordX, coordY;
 
     cout << "--- Adicionar Novo Veiculo ---\n";
 
@@ -33,7 +36,7 @@ Veiculos GerenciadorVeiculos::pedirDadosParaNovoVeiculo() {
       cin >> placa_lida;
 
       if(placa_lida.length() != 7){
-        cout << "Erro: A placa deve conter exatamente 7 \n";
+        cout << "Erro: A placa deve conter exatamente 7 caracteres\n";
       }
     }while(placa_lida.length() != 7);
 
@@ -41,7 +44,17 @@ Veiculos GerenciadorVeiculos::pedirDadosParaNovoVeiculo() {
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     getline(cin, modelo_lido);
 
-    return Veiculos(placa_lida, modelo_lido);
+    cout << "O veiculo esta ocupado? (S/N): ";
+    cin >> status_char;
+    status_final = (status_char == 'S' || status_char == 's');
+
+    cout << "Digite a coordenada X do local atual: ";
+    cin >> coordX;
+    cout << "Digite a coordenada Y do local atual: ";
+    cin >> coordY;
+
+
+    return Veiculos(placa_lida, modelo_lido, status_final, coordX, coordY);
 }
 
 void GerenciadorVeiculos::salvarVeiculoNoArquivo(const Veiculos& veiculo) {
@@ -81,7 +94,10 @@ void GerenciadorVeiculos::listarVeiculos() const {
         std::cout << "Nenhum veiculo cadastrado.\n";
     } else {
         for (const auto& veiculo : this->listaDeVeiculos) {
-            std::cout << "Placa: " << veiculo.getPlaca() << " | Modelo: " << veiculo.getModelo() << std::endl;
+            std::cout << "Placa: " << veiculo.getPlaca()
+                      << " | Modelo: " << veiculo.getModelo()
+                      << " | Status: " << (veiculo.getStatus() ? "Ocupado" : "Desocupado") 
+                      << " | Local: (" << veiculo.getCoordenadaX() << ", " << veiculo.getCoordenadaY() << ")" << std::endl;
         }
     }
     std::cout << "---------------------------\n";
@@ -99,15 +115,42 @@ void GerenciadorVeiculos::atualizarVeiculo() {
 
         if (veiculo.getPlaca() == placa_busca) {
             // --- Veículo encontrado! ---
-            std::cout << "Veiculo encontrado. Modelo atual: " << veiculo.getModelo() << std::endl;
+            std::cout << "Veiculo encontrado. Modelo atual: " << veiculo.getModelo() << ", Status atual: " << (veiculo.getStatus() ? "Ocupado" : "Desocupado") << ", Local atual: (" << veiculo.getCoordenadaX() << ", " << veiculo.getCoordenadaY() << ")" << std::endl;
             
             // Pede o novo modelo
             std::string novo_modelo;
-            std::cout << "Digite o novo modelo: ";
+            std::cout << "Digite o novo modelo (ou deixe em branco para nao alterar): ";
             std::getline(std::cin, novo_modelo);
             cout << "\n";
 
-            veiculo.setModelo(novo_modelo);
+            if (!novo_modelo.empty()) {
+                veiculo.setModelo(novo_modelo);
+            }
+
+            // Pede o novo status
+            char novo_status_char;
+            cout << "Deseja alterar o status? (S/N): ";
+            cin >> novo_status_char;
+            if (novo_status_char == 'S' || novo_status_char == 's') {
+                char ocupado_char;
+                cout << "O veiculo esta ocupado? (S/N): ";
+                cin >> ocupado_char;
+                veiculo.setStatus(ocupado_char == 'S' || ocupado_char == 's');
+            }
+
+            // Pede o novo local
+            char alterar_local_char;
+            cout << "Deseja alterar o local? (S/N): ";
+            cin >> alterar_local_char;
+            if (alterar_local_char == 'S' || alterar_local_char == 's') {
+                int novoX, novoY;
+                cout << "Digite a nova coordenada X: ";
+                cin >> novoX;
+                cout << "Digite a nova coordenada Y: ";
+                cin >> novoY;
+                veiculo.setLocalAtual(novoX, novoY);
+            }
+
 
             // Reescreve o arquivo .dat com a lista atualizada
             salvarListaCompletaNoArquivo();

@@ -7,9 +7,6 @@
 #include "gerenciadorPedidos.h"
 
 class Menu{
-
-  private:
-    GerenciadorLocais gerenciadorLocais;
     
   public:
     void mostrarMenuPrincipal();
