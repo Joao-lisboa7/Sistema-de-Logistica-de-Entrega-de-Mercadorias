@@ -14,14 +14,13 @@ public:
     void excluirVeiculo();
     void atualizarVeiculo();
     Veiculos* encontrarVeiculoMaisProximo(int x, int y);
-    void salvarDados() const; // --- NOVO MÉTODO PÚBLICO ---
+    void salvarDados() const; 
 
 private: 
     std::vector<Veiculos> listaDeVeiculos;
     const std::string nomeDoArquivo = "veiculos.dat";
 
     void carregarVeiculosDoArquivo();
-    // Este método agora é chamado apenas internamente ou via salvarDados()
     void salvarListaCompletaNoArquivo() const; 
     Veiculos pedirDadosParaNovoVeiculo();
 };

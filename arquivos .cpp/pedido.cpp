@@ -1,6 +1,6 @@
 #include "pedido.h"
 #include <string>
-#include <cstring> // Para strncpy
+#include <cstring> 
 
 // --- Implementação dos Construtores ---
 

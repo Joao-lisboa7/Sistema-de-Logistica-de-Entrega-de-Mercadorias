@@ -1,7 +1,7 @@
 #include "gerenciadorPedidos.h"
 #include "pedido.h"
-#include "gerenciadorLocais.h" // --- INCLUDE CORRIGIDO ---
-#include "local.h"              // --- INCLUDE CORRIGIDO ---
+#include "gerenciadorLocais.h" 
+#include "local.h"            
 #include <iostream>
 #include <fstream>
 #include <limits>

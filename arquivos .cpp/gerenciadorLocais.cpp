@@ -1,9 +1,9 @@
 #include "gerenciadorLocais.h"
-#include "local.h" // Assegure que a classe Local esteja definida aqui
+#include "local.h" /
 #include <iostream>
 #include <fstream>
 #include <limits>
-#include <algorithm> // Para std::find_if
+#include <algorithm> 
 
 // --- Implementação do Construtor ---
 GerenciadorLocais::GerenciadorLocais() {

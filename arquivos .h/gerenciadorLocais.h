@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <string>
-#include "local.h" // Garanta que este arquivo defina a classe/struct Local
+#include "local.h"
 
 class GerenciadorLocais {
 public: // --- Métodos que o Menu pode acessar ---
@@ -14,7 +14,7 @@ public: // --- Métodos que o Menu pode acessar ---
     void excluirLocal();
     Local encontrarLocalPorNome(const std::string& nome); // --- MOVIDO PARA PUBLIC ---
 
-private: // --- Detalhes internos que o Menu não precisa conhecer ---
+private: 
     std::vector<Local> locais;
     const std::string nomeDoArquivo = "locais.dat";
 

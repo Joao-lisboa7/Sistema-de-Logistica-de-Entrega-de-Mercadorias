@@ -20,7 +20,6 @@ private:
     std::vector<Pedido>::iterator encontrarPedidoPorId(int id);
 
 public:
-    // Construtor corrigido para aceitar ambas as referências
     GerenciadorPedidos(GerenciadorVeiculos& gv, GerenciadorLocais& gl);
 
     void criarPedido();
