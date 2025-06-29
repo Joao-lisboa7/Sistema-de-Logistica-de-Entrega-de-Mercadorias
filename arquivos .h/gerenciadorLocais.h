@@ -12,6 +12,7 @@ public: // --- Métodos que o Menu pode acessar ---
     void listarLocais() const;
     void atualizarLocal();
     void excluirLocal();
+    Local encontrarLocalPorNome(const std::string& nome); // --- MOVIDO PARA PUBLIC ---
 
 private: // --- Detalhes internos que o Menu não precisa conhecer ---
     std::vector<Local> locais;
@@ -24,8 +25,7 @@ private: // --- Detalhes internos que o Menu não precisa conhecer ---
     // Método auxiliar para obter dados do usuário
     bool pedirDadosParaLocal(std::string& nome, int& x, int& y);
 
-    // Método auxiliar para encontrar um local
-    std::vector<Local>::iterator encontrarLocalPorNome(const std::string& nome);
+    // std::vector<Local>::iterator encontrarLocalPorNome(const std::string& nome); // Versão antiga removida
 };
 
 #endif // GERENCIADORLOCAIS_H

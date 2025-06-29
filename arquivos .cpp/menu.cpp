@@ -5,9 +5,9 @@
 #include<limits>
 using namespace std;
 
-// --- IMPLEMENTAÇÃO DO CONSTRUTOR ---
-// Inicializa o gerenciadorPedidos passando a referência do gerenciadorVeiculos
-Menu::Menu() : gerenciadorPedidos(gerenciadorVeiculos) {
+// --- IMPLEMENTAÇÃO DO CONSTRUTOR MODIFICADA ---
+// Inicializa o gerenciadorPedidos passando as referências necessárias
+Menu::Menu() : gerenciadorLocais(), gerenciadorVeiculos(), gerenciadorPedidos(gerenciadorVeiculos, gerenciadorLocais) {
     // O corpo pode ficar vazio
 }
 
@@ -44,7 +44,7 @@ void Menu::menuPedidos() {
         cout << "2 - Listar pedidos\n";
         cout << "3 - Atualizar pedido\n";
         cout << "4 - Excluir pedido\n";
-        cout << "5 - Calcular Rota de Entrega\n"; // --- NOVA OPÇÃO ---
+        cout << "5 - Calcular Rota de Entrega\n"; 
         cout << "0 - Voltar ao menu principal\n";
         cout << "Opcao: ";
         cin >> opcao;
@@ -63,7 +63,7 @@ void Menu::menuPedidos() {
             case 4:
                 gerenciadorPedidos.excluirPedido();
                 break;
-            case 5: // --- NOVO CASE ---
+            case 5: 
                 gerenciadorPedidos.calcularRotaDeEntrega();
                 break;
             case 0:
@@ -143,7 +143,7 @@ void Menu::menuVeiculos(){
         this ->gerenciadorVeiculos.excluirVeiculo();
         break;
       }
-      case 0: break;
+      case 0: break; 
       default:{
         cout << "Opcao invalida. Tente novamente.\n"; break;
       }

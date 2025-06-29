@@ -10,6 +10,20 @@ GerenciadorLocais::GerenciadorLocais() {
     carregarLocaisDoArquivo();
 }
 
+// --- IMPLEMENTAÇÃO DO MÉTODO PUBLICADO ---
+Local GerenciadorLocais::encontrarLocalPorNome(const std::string& nome) {
+    auto it = std::find_if(locais.begin(), locais.end(), [&](const Local& local) {
+        return local.getNome() == nome;
+    });
+
+    if (it != locais.end()) {
+        return *it; // Retorna uma cópia do local encontrado
+    }
+    
+    return Local(); // Retorna um local padrão (com nome vazio) se não encontrar
+}
+
+
 // --- Implementação dos Métodos Públicos (CRUD) ---
 
 void GerenciadorLocais::criarLocal() {
@@ -51,10 +65,12 @@ void GerenciadorLocais::atualizarLocal() {
     }
 
     std::string nomeBusca;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::cout << "Digite o nome do local que deseja atualizar: ";
-    std::cin >> nomeBusca; // Mudança: usando cin >> em vez de getline
+    std::getline(std::cin, nomeBusca);
 
-    auto it = encontrarLocalPorNome(nomeBusca);
+    auto it = std::find_if(locais.begin(), locais.end(), [&](const Local& local){ return local.getNome() == nomeBusca; });
+
 
     if (it != locais.end()) {
         std::cout << "Local encontrado. Digite os novos dados.\n";
@@ -63,7 +79,7 @@ void GerenciadorLocais::atualizarLocal() {
 
         // Pede os novos dados ao usuário
         std::cout << "Digite o novo nome: ";
-        std::cin >> novoNome; // Mudança: usando cin >> em vez de getline
+        std::getline(std::cin, novoNome);
         std::cout << "Digite a nova coordenada X: ";
         std::cin >> novaCoordX;
         std::cout << "Digite a nova coordenada Y: ";
@@ -93,7 +109,7 @@ void GerenciadorLocais::excluirLocal() {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::getline(std::cin, nomeBusca);
 
-    auto it = encontrarLocalPorNome(nomeBusca);
+    auto it = std::find_if(locais.begin(), locais.end(), [&](const Local& local){ return local.getNome() == nomeBusca; });
 
     if (it != locais.end()) {
         char confirmacao;
@@ -146,11 +162,12 @@ void GerenciadorLocais::salvarListaCompletaNoArquivo() const {
 }
 
 bool GerenciadorLocais::pedirDadosParaLocal(std::string& nome, int& x, int& y) {
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::cout << "Digite o nome do local: ";
-    std::cin >> nome; // Mudança: usando cin >> em vez de getline
+    std::getline(std::cin, nome);
     
     // Validação para garantir que o nome seja único
-    if (encontrarLocalPorNome(nome) != locais.end()) {
+    if (!encontrarLocalPorNome(nome).getNome().empty()) {
         std::cout << "Erro: Ja existe um local com este nome.\n";
         return false;
     }
@@ -160,10 +177,4 @@ bool GerenciadorLocais::pedirDadosParaLocal(std::string& nome, int& x, int& y) {
     std::cout << "Digite a coordenada Y: ";
     std::cin >> y;
     return true;
-}
-
-std::vector<Local>::iterator GerenciadorLocais::encontrarLocalPorNome(const std::string& nome) {
-    return std::find_if(locais.begin(), locais.end(), [&](const Local& local) {
-        return local.getNome() == nome;
-    });
 }
