@@ -27,6 +27,7 @@ Veiculos GerenciadorVeiculos::pedirDadosParaNovoVeiculo() {
     string placa_lida, modelo_lido;
     char status_char;
     bool status_final;
+    int coordX, coordY;
 
     cout << "--- Adicionar Novo Veiculo ---\n";
 
@@ -47,8 +48,13 @@ Veiculos GerenciadorVeiculos::pedirDadosParaNovoVeiculo() {
     cin >> status_char;
     status_final = (status_char == 'S' || status_char == 's');
 
+    cout << "Digite a coordenada X do local atual: ";
+    cin >> coordX;
+    cout << "Digite a coordenada Y do local atual: ";
+    cin >> coordY;
 
-    return Veiculos(placa_lida, modelo_lido, status_final);
+
+    return Veiculos(placa_lida, modelo_lido, status_final, coordX, coordY);
 }
 
 void GerenciadorVeiculos::salvarVeiculoNoArquivo(const Veiculos& veiculo) {
@@ -90,7 +96,8 @@ void GerenciadorVeiculos::listarVeiculos() const {
         for (const auto& veiculo : this->listaDeVeiculos) {
             std::cout << "Placa: " << veiculo.getPlaca()
                       << " | Modelo: " << veiculo.getModelo()
-                      << " | Status: " << (veiculo.getStatus() ? "Ocupado" : "Desocupado") << std::endl;
+                      << " | Status: " << (veiculo.getStatus() ? "Ocupado" : "Desocupado") 
+                      << " | Local: (" << veiculo.getCoordenadaX() << ", " << veiculo.getCoordenadaY() << ")" << std::endl;
         }
     }
     std::cout << "---------------------------\n";
@@ -108,7 +115,7 @@ void GerenciadorVeiculos::atualizarVeiculo() {
 
         if (veiculo.getPlaca() == placa_busca) {
             // --- Veículo encontrado! ---
-            std::cout << "Veiculo encontrado. Modelo atual: " << veiculo.getModelo() << ", Status atual: " << (veiculo.getStatus() ? "Ocupado" : "Desocupado") << std::endl;
+            std::cout << "Veiculo encontrado. Modelo atual: " << veiculo.getModelo() << ", Status atual: " << (veiculo.getStatus() ? "Ocupado" : "Desocupado") << ", Local atual: (" << veiculo.getCoordenadaX() << ", " << veiculo.getCoordenadaY() << ")" << std::endl;
             
             // Pede o novo modelo
             std::string novo_modelo;
@@ -129,6 +136,19 @@ void GerenciadorVeiculos::atualizarVeiculo() {
                 cout << "O veiculo esta ocupado? (S/N): ";
                 cin >> ocupado_char;
                 veiculo.setStatus(ocupado_char == 'S' || ocupado_char == 's');
+            }
+
+            // Pede o novo local
+            char alterar_local_char;
+            cout << "Deseja alterar o local? (S/N): ";
+            cin >> alterar_local_char;
+            if (alterar_local_char == 'S' || alterar_local_char == 's') {
+                int novoX, novoY;
+                cout << "Digite a nova coordenada X: ";
+                cin >> novoX;
+                cout << "Digite a nova coordenada Y: ";
+                cin >> novoY;
+                veiculo.setLocalAtual(novoX, novoY);
             }
 
 

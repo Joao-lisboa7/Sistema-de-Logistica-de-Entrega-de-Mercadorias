@@ -5,26 +5,22 @@
 #include <string>
 #include "veiculos.h"
 
-
-
 class GerenciadorVeiculos {
 
-public: // --- Métodos que o Menu pode acessar ---
-    GerenciadorVeiculos();
+public:
+    GerenciadorVeiculos(); // Construtor voltou ao original
     void adicionarNovoVeiculo();
     void listarVeiculos() const;
     void excluirVeiculo();
     void atualizarVeiculo();
 
-private: // --- Detalhes internos que o Menu não precisa conhecer ---
-    // A lista de veículos fica aqui, sob a responsabilidade do gerenciador.
+private: 
     std::vector<Veiculos> listaDeVeiculos;
     const std::string nomeDoArquivo = "veiculos.dat";
 
     void carregarVeiculosDoArquivo();
     void salvarVeiculoNoArquivo(const Veiculos& veiculo);
     Veiculos pedirDadosParaNovoVeiculo();
-
     void salvarListaCompletaNoArquivo() const;
 };
 
