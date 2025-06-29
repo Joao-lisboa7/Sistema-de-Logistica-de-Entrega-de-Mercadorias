@@ -7,17 +7,17 @@ using namespace std;
 
 class Veiculos{
   private:
-  static const int TAM_PLACA = 8; 
+  static const int TAM_PLACA = 8;
   static const int TAM_MODELO = 16;
   
   char placa[TAM_PLACA];
   char modelo[TAM_MODELO];
-  bool status; 
+  bool status;
   //Local* localAtural;
   
   public:
   Veiculos();
-  Veiculos(const std::string& placa_inicial, const std::string& modelo_inicial);
+  Veiculos(const std::string& placa_inicial, const std::string& modelo_inicial, bool status_inicial);
   
   //métodos get
   string getPlaca() const;
@@ -25,6 +25,7 @@ class Veiculos{
   bool getStatus() const;
 
   void setModelo(const std::string& novoModelo);
+  void setStatus(bool novoStatus);
 };
 
 void salvarVeiculoEmArquivo(const Veiculos& veiculo);

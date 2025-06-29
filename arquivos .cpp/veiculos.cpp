@@ -9,21 +9,21 @@
 
 /*===========Creat=============*/
 Veiculos::Veiculos() {
-    placa[0] = '\0';  
-    modelo[0] = '\0'; 
-    status = false;
+    placa[0] = '\0';
+    modelo[0] = '\0';
+    status = false; // Por padrão, desocupado
 }
 
-Veiculos::Veiculos(const std::string& placa_inicial, const std::string& modelo_inicial) {
+Veiculos::Veiculos(const std::string& placa_inicial, const std::string& modelo_inicial, bool status_inicial) {
     strncpy(this->placa, placa_inicial.c_str(), TAM_PLACA - 1);
     this->placa[TAM_PLACA - 1] = '\0';
 
     strncpy(this->modelo, modelo_inicial.c_str(), TAM_MODELO - 1);
     this->modelo[TAM_MODELO - 1] = '\0';
 
-    this->status = true;
+    this->status = status_inicial;
     
-    std::cout << "----Veiculo criado----\nPlaca: " << this->placa << ", Modelo: " << this->modelo << std::endl;
+    std::cout << "----Veiculo criado----\nPlaca: " << this->placa << ", Modelo: " << this->modelo << ", Status: " << (this->status ? "Ocupado" : "Desocupado") << std::endl;
 }
 
 void salvarVeiculoEmArquivo(const Veiculos& veiculo) {
@@ -55,6 +55,10 @@ bool Veiculos::getStatus() const{
 
 /*========update========*/
 void Veiculos::setModelo(const std::string& novoModelo) {
-    strncpy(this->modelo, novoModelo.c_str(), TAM_MODELO);
+    strncpy(this->modelo, novoModelo.c_str(), TAM_MODELO - 1);
     this->modelo[TAM_MODELO - 1] = '\0';
+}
+
+void Veiculos::setStatus(bool novoStatus) {
+    this->status = novoStatus;
 }
