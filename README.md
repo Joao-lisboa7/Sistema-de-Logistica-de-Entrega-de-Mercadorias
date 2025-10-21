@@ -1,5 +1,6 @@
 # Sistema-de-Logistica-de-Entrega-de-Mercadorias
-Trabalho de Algoritmos e Estrutura de Dados:
+
+Trabalho de Algoritmos e Estrutura de Dados 1/2025:
 Um sistema que calcula a distância de pedidos, veículos e locais cadastrados integrando essas classes e calculando a maneira mais eficiênte para reservar um veículo que poderá levar um pedido até seu local de destino.
 
 ## Como rodar o código (terminal)
